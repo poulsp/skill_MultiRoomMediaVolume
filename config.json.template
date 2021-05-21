@@ -1,0 +1,29 @@
+{
+	"volumeStepsUpDown": {
+		"defaultValue": 6,
+		"dataType": "integer",
+		"isSensitive": false,
+		"description": "How many step in percent the volume increase/decrease.",
+		"onUpdate": "setVolumeStepsUpDown"
+	},
+	"widgetSizeH": {
+		"defaultValue": 468,
+		"dataType": "integer",
+		"isSensitive": false,
+		"description": "Widget size height in pixels."
+	},
+	"widgetSizeW": {
+		"defaultValue": 382,
+		"dataType": "integer",
+		"isSensitive": false,
+		"description": "Widget size width in pixels."
+	},
+	"volumeControl": {
+		"defaultValue": "snapcast",
+		"dataType": "list",
+		"isSensitive": false,
+		"values": ["snapcast", "alsamixer"],
+		"description": "Which volume control to use snapcast | alsamixer. Further explanation needed.",
+		"onUpdate": "publishVolumeControlType"
+	}
+}

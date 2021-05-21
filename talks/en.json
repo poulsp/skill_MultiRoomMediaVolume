@@ -1,0 +1,51 @@
+{
+  "volumeUp": {
+    "default": [
+      "increases the sound to {} percent."
+    ],
+    "short": [
+      "increases the sound to {}."
+    ]
+  },
+  "volumeDown": {
+    "default": [
+      "decreases the sound to {} percent."
+    ],
+    "short": [
+      "decreases the sound to {}."
+    ]
+  },
+  "setVolume": {
+    "default": [
+      "Set volume to {} percent."
+    ],
+    "short": [
+      "set volume to {}."
+    ]
+  },
+  "getVolume": {
+    "default": [
+      "Volume is {} percent."
+    ],
+    "short": [
+      "Volume is {}."
+    ]
+  },
+  "volumeMute": {
+    "default": [
+      "Mute."
+    ],
+    "short": [
+      "sound, off."
+    ]
+  },
+  "volumeUnmute": {
+    "default": [
+      "Unmute."
+    ],
+    "short": [
+      "sound on."
+    ]
+  }
+
+}

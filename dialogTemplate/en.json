@@ -1,0 +1,182 @@
+{
+	"skill": "MultiRoomMediaVolume",
+    "slotTypes": [],
+    "intents": [
+        {
+            "name": "volumeUp",
+            "enabledByDefault": true,
+            "utterances": [
+                "volume up",
+                "increase volume",
+                "volume up {5:=>Percent}",
+                "volume up {7:=>Percent}",
+                "volume up {61:=>Percent}",
+                "volume up {5:=>Percent} percent",
+                "volume up {7:=>Percent} percent",
+                "volume up {30:=>Percent} percent",
+                "increase volume by {5:=>Percent}",
+                "increase volume by {7:=>Percent}",
+                "increase volume by {30:=>Percent}",
+                "volume up at {office=>Room} {5:=>Percent} percent",
+                "volume up at {kitchen=>Room} {7:=>Percent} percent",
+                "volume up at {living room=>Room} {30:=>Percent} percent",
+                "volume up at {office=>Room} with {5:=>Percent} percent",
+                "volume up at {kitchen=>Room} with {7:=>Percent} percent",
+                "volume up at {living room=>Room} with {30:=>Percent} percent"
+            ],
+            "slots": [
+                {
+                    "name": "Percent",
+                    "required": false,
+                    "type": "snips/number",
+                    "missingQuestion": ""
+                },
+                {
+                    "name": "Room",
+                    "required": false,
+                    "type": "Alice/Location",
+                    "missingQuestion": ""
+                }
+            ]
+        },
+        {
+            "name": "volumeDown",
+            "enabledByDefault": true,
+            "utterances": [
+                "volume down",
+                "decrease volume",
+                "volume down {5:=>Percent}",
+                "volume down {7:=>Percent}",
+                "volume down {71:=>Percent}",
+                "volume down {5:=>Percent} percent",
+                "volume down {7:=>Percent} percent",
+                "volume down {30:=>Percent} percent",
+                "decrease volume by {5:=>Percent}",
+                "decrease volume by {7:=>Percent}",
+                "decrease volume by {30:=>Percent}",
+                "volume down at {office=>Room} {5:=>Percent} percent",
+                "volume down at {kitchen=>Room} {7:=>Percent} percent",
+                "volume down at {living room=>Room} {30:=>Percent} percent",
+                "volume down at {office=>Room} with {5:=>Percent} percent",
+                "volume down at {kitchen=>Room} with {7:=>Percent} percent",
+                "volume down at {living room=>Room} with {30:=>Percent} percent"
+            ],
+            "slots": [
+                {
+                    "name": "Percent",
+                    "required": false,
+                    "type": "snips/number",
+                    "missingQuestion": ""
+                },
+                {
+                    "name": "Room",
+                    "required": false,
+                    "type": "Alice/Location",
+                    "missingQuestion": ""
+                }
+            ]
+        },
+        {
+            "name": "setVolume",
+            "enabledByDefault": true,
+            "utterances": [
+                "volume {11:=>Percent}",
+                "volume {15:=>Percent}",
+                "volume {38:=>Percent}",
+                "volume {12:=>Percent} percent",
+                "volume {17:=>Percent} percent",
+                "volume {48:=>Percent} percent",
+                "set the volume to {21:=>Percent} at {office=>Room}",
+                "set the volume to {46:=>Percent} at {kitchen=>Room}",
+                "set the volume to {15:=>Percent} at {dining room=>Room}",
+                "set the volume to {22:=>Percent} percent at {office=>Room}",
+                "set the volume to {56:=>Percent} percent at {kitchen=>Room}",
+                "set the volume to {35:=>Percent} percent at {dining room=>Room}",
+                "set the volume to {22:=>Percent} percent",
+                "set the volume to {57:=>Percent} percent",
+                "set the volume to {15:=>Percent} percent",
+                "set the volume to {22:=>Percent}",
+                "set the volume to {57:=>Percent}",
+                "set the volume to {15:=>Percent}",
+                "set sound to {22:=>Percent} percent",
+                "set sound to {23:=>Percent} percent",
+                "set sound to {42:=>Percent} percent"
+            ],
+            "slots": [
+                {
+                    "name": "Percent",
+                    "required": false,
+                    "type": "snips/number",
+                    "missingQuestion": ""
+                },
+                {
+                    "name": "Room",
+                    "required": false,
+                    "type": "Alice/Location",
+                    "missingQuestion": ""
+                }
+            ]
+        },
+        {
+            "name": "getVolume",
+            "enabledByDefault": true,
+            "utterances": [
+                "get volume",
+                "volume",
+                "tell me the volume",
+                "get volume at {office=>Room}",
+                "get volume at {kitchen=>Room}",
+                "get volume at {bedroom=>Room}",
+                "get volume at {entrance=>Room}"
+            ],
+            "slots": [
+                {
+                    "name": "Room",
+                    "required": false,
+                    "type": "Alice/Location",
+                    "missingQuestion": ""
+                }
+            ]
+        },
+        {
+            "name": "volumeMute",
+            "enabledByDefault": true,
+            "utterances": [
+                "mute",
+                "mute volume",
+                "volume mute",
+                "volume mute at {office=>Room}",
+                "volume mute at {kitchen=>Room}",
+                "volume mute at {bedroom=>Room}"
+            ],
+            "slots": [
+                {
+                    "name": "Room",
+                    "required": false,
+                    "type": "Alice/Location",
+                    "missingQuestion": ""
+                }
+            ]
+        },
+        {
+            "name": "volumeUnmute",
+            "enabledByDefault": true,
+            "utterances": [
+                "unmute",
+                "unmute volume",
+                "volume unmute",
+                "volume unmute at {office=>Room}",
+                "volume unmute at {kitchen=>Room}",
+                "volume unmute at {bedroom=>Room}"
+            ],
+            "slots": [
+                {
+                    "name": "Room",
+                    "required": false,
+                    "type": "Alice/Location",
+                    "missingQuestion": ""
+                }
+            ]
+        }
+    ]
+}
