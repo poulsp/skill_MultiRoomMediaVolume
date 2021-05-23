@@ -1,24 +1,3 @@
-/**
-MultiRoomRadioManager widget ramme er widgth 689 x heigth 489
-MultiRoomMediaVolume widget ramme widgth 380 x heigth 489
-
-.MultiRoomRadioManager_radio {
-  display: none;
-	width: 690px;
-	height: 450px;
-}
-
-.MultiRoomMediaVolume_controls {
-  display: block;
-	width: 375px;
-	height: 450px;
-	background-color: coral;
-}
-
-
-*/
-
-
 .MultiRoomMediaVolume {
 	width: 100%;
 	height: 100%;
@@ -29,8 +8,8 @@ MultiRoomMediaVolume widget ramme widgth 380 x heigth 489
 
 .MultiRoomMediaVolume_controls {
   display: block;
-	width: 375px;
-	height: 450px;
+	width: 100%;
+	height: 100%;
 /*	background-color: coral; */
 	background-color: var(--mainBG);
 }
@@ -82,6 +61,8 @@ p, .MultiRoomMediaVolume_explanation {
 
 .MultiRoomMediaVolume_explanation {
   display: none;
+	width: 100%;
+	height: 100%;
 }
 
 .MultiRoomMediaVolume_img {

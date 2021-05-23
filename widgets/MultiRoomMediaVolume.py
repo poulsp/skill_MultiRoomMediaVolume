@@ -25,8 +25,8 @@ class MultiRoomMediaVolume(Widget):
 		if self.settings:
 			self.settings['title'] = False
 			self.settings['borders'] = False
-			self.w = self.skillInstance.getConfig('widgetSizeW')
-			self.h = self.skillInstance.getConfig('widgetSizeH')
+			self.w = 290
+			self.h = 452
 
 			# self.w = 382
 			# self.h = 468
