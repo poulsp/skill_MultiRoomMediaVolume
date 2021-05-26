@@ -28,7 +28,7 @@ class CheckSnapcast():
 	@staticmethod
 	def snapcastInstallPip(parent):
 		if not path.exists('./venv/lib/python3.7/site-packages/snapcast'):
-			result = parent.Commons.runSystemCommand(['./venv/bin/pip', 'install', 'snapcast', 'asyncio'])
+			result = parent.Commons.runSystemCommand(['./venv/bin/pip', 'install', 'snapcast'])
 			if result.returncode:
 				raise Exception(result.stderr)
 

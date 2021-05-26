@@ -1,6 +1,7 @@
 # ~/.local/bin/projectalice-sk validate --paths ~/ProjectAlice/skills/MultiRoomMediaVolume
 
 
+import asyncio
 import json
 
 from core.base.model.AliceSkill import AliceSkill
@@ -89,7 +90,6 @@ class MultiRoomMediaVolume(AliceSkill):
 		self.logInfo
 
 		# We import these here because snapcast.control throw an exception if it can't connect to port 1705 in the top of this file.
-		import asyncio
 		import snapcast.control
 
 
