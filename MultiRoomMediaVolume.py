@@ -106,6 +106,10 @@ class MultiRoomMediaVolume(AliceSkill):
 		self._volume = self._startupVolume
 		self.publish(_MULTIROOM_VOLUME,  json.dumps({'playSite': 'everywhere', 'volume': self._volume, 'info': ''}))
 		self._setSnapcastVolume(self._volume)
+		if self._loop.is_running():
+			self._loop.close()
+
+		super.onStop()
 
 
 	#-----------------------------------------------
