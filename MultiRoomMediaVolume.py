@@ -109,8 +109,6 @@ class MultiRoomMediaVolume(AliceSkill):
 		if self._loop.is_running():
 			self._loop.close()
 
-		super.onStop()
-
 
 	#-----------------------------------------------
 	def onHotwordToggleOff(self, deviceUid: str, session: DialogSession): #b5 rc1
