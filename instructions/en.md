@@ -1,5 +1,8 @@
 # MultiRoomMediaVolume
 
 ## What it does.
-Sorry I got a bit tired when I came in here :)
-So it will be later.
+For now, See instruction for MultiRoomRadioManager
+
+
+## TODO
+Write instructions.

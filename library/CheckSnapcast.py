@@ -1,15 +1,33 @@
 #!./venv/bin/python
 # -*- coding: utf-8 -*-
 
+#  Copyright (c) 2021 Poul Spang
+#
+#  This file, CheckSnapcast.py, is part of Project skill_MultiRoomMediaVolume.
+#
+#  Project skill_MultiRoomMediaVolume is free software: you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+
 import platform
 import shlex
 import subprocess
 import time
-from os import path
+from os import path #, symlink
 
 
 # HELP TO DEVELOPMENT.
-# sudo apt-get purge snapserver -y && sudo rm /dev/shm/snapfifo;cd ~/ProjectAlice;./venv/bin/pip uninstall snapcast asyncio -y
+# sudo apt-get purge snapserver -y && sudo rm /dev/shm/snapfifo;cd ~/ProjectAlice;./venv/bin/pip uninstall snapcastcontrol -y
 # Test stream
 # ffmpeg -v 0 -y -rtbufsize 15M -i http://stream.srg-ssr.ch/m/rsj/aacp_96 -f u16le -acodec pcm_s16le -ac 2 -ar 48000 /dev/shm/snapfifo
 
@@ -27,10 +45,30 @@ class CheckSnapcast():
 	#-----------------------------------------------
 	@staticmethod
 	def snapcastInstallPip(parent):
-		if not path.exists('./venv/lib/python3.7/site-packages/snapcast'):
-			result = parent.Commons.runSystemCommand(['./venv/bin/pip', 'install', 'snapcast'])
+		_SNAPCASTCONTROL_VERSION = '0.1.0'
+
+		if not path.exists('./venv/lib/python3.7/site-packages/snapcastcontrol'):
+			cmd = shlex.split('./venv/bin/pip install snapcastcontrol')
+			result = parent.Commons.runSystemCommand(cmd)
 			if result.returncode:
 				raise Exception(result.stderr)
+		else:
+			try:
+				_output = subprocess.check_output(
+					"/home/pi/ProjectAlice/venv/bin/pip show snapcastcontrol|grep Version|awk '{print $2}'",
+					stderr=subprocess.STDOUT,
+					shell=True
+				).decode('utf-8').replace('\n','')
+
+				if _output != _SNAPCASTCONTROL_VERSION:
+
+					cmd = shlex.split('./venv/bin/pip install snapcastcontrol --upgrade')
+					result = parent.Commons.runSystemCommand(cmd)
+					if result.returncode:
+						raise Exception(result.stderr)
+
+			except subprocess.CalledProcessError as e:
+				raise e
 
 
 	#-----------------------------------------------

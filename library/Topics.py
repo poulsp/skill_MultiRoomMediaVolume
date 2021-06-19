@@ -15,6 +15,9 @@ _MULTIROOM_STREAM_STOPPED   = 'psp/multiroom/stream/stopped'
 _MULTIROOM_PLAYER_PLAY = "psp/multiroom/player/play"
 _MULTIROOM_PLAYER_STOP = "psp/multiroom/player/stop"
 
+_MULTIROOM_VOLUME_OFFSET_SET 	= 'psp/multiroom/volume/offset/set'
+_MULTIROOM_VOLUME_OFFSET_GET 	= 'psp/multiroom/volume/offset/get'
+_MULTIROOM_CLIENT_LATENCY_SET = 'psp/multiroom/latency/set'
 
 _MULTIROOM_BLUETOOTH_STREAM      = 'psp/multiroom/bluetooth/stream'
 _MULTIROOM_BLUETOOTH_STREAM_STOP = 'psp/multiroom/bluetooth/stream/stop'
@@ -29,3 +32,5 @@ _MULTIROOM_SEND_RADIO_RADIOSTATIONS   = 'psp/multiroom/radio/send/radiostations'
 _RADIOMANAGER_WIDGET_REFRESH = 'psp/radiomanager/widget/refresh'
 
 _UNKNOWN_RADIO_STATION = 'Unknown radio station'
+
+
