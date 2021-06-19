@@ -1,5 +1,6 @@
 body {
-    background-color: rgb(246, 246, 246);
+//    background-color: rgb(246, 246, 246);
+    background-color: green;
     color: rgb(255, 255, 255);
     font-family: 'Arial', sans-serif;
     width: 100%;
@@ -255,7 +256,7 @@ select {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-  
+
 .client-setting-content {
     background-color: #fefefe;
     color: #686868;
@@ -275,7 +276,7 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
 }
-  
+
 input[type=submit] {
     width: 100%;
     background-color: #4CAF50;

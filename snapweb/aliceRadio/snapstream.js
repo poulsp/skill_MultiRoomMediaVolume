@@ -175,7 +175,7 @@ class HelloMessage extends JsonMessage {
         this.mac = "";
         this.hostname = "";
         this.version = "0.1.0";
-        this.clientName = "Psp";
+        this.clientName = "Snapweb";
         this.os = "";
         this.arch = "web";
         this.instance = 1;
@@ -358,7 +358,7 @@ class AudioStream {
             }
             else {
                 if (Math.abs(age) > 5) {
-                    // We are 5ms apart, do a hard sync, i.e. don't play faster/slower,
+                    // We are 5ms apart, do a hard sync, i.e. don't play faster/slower, 
                     // but seek to the desired position instead
                     while (this.chunk && age > this.chunk.duration()) {
                         console.log("Chunk too old, dropping (age: " + age.toFixed(2) + " > " + this.chunk.duration().toFixed(2) + ")");
@@ -389,7 +389,7 @@ class AudioStream {
                 //     console.debug("Age > 0, rate: " + rate);
                 //     // we are late (age > 0), this means we are not playing fast enough
                 //     // => the real sample rate seems to be lower, we have to drop some frames
-                //     this.setRealSampleRate(this.sampleFormat.rate * rate); // 0.9999);
+                //     this.setRealSampleRate(this.sampleFormat.rate * rate); // 0.9999);    
                 // }
                 // else if (age < -0.1) {
                 //     let rate = -age * 0.0005;
@@ -397,7 +397,7 @@ class AudioStream {
                 //     console.debug("Age < 0, rate: " + rate);
                 //     // we are early (age > 0), this means we are playing too fast
                 //     // => the real sample rate seems to be higher, we have to insert some frames
-                //     this.setRealSampleRate(this.sampleFormat.rate * rate); // 0.9999);
+                //     this.setRealSampleRate(this.sampleFormat.rate * rate); // 0.9999);    
                 // }
                 // else {
                 //     this.setRealSampleRate(this.sampleFormat.rate);

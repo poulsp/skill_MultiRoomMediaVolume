@@ -116,6 +116,7 @@ class SnapControl {
     constructor(baseUrl) {
         this.server = new Server();
         this.baseUrl = baseUrl;
+        //        this.baseUrl = 'ws://localhost:1780';
         this.msg_id = 0;
         this.status_req_id = -1;
         this.connect();
@@ -377,6 +378,7 @@ function show() {
             content += "<a href=\"javascript:setMuteGroup('" + group.id + "'," + !muted + ");\"><img src='" + mute_img + "' class='mute-button'></a>";
             content += "<div class='slidergroupdiv'>";
             content += "    <input type='range' draggable='false' min=0 max=100 step=1 id='vol_" + group.id + "' oninput='javascript:setGroupVolume(\"" + group.id + "\")' value=" + volume + " class='slider'>";
+            content += "        <p class='slideroutput'>&nbsp<span id='group_vol_" + group.id + "'></span></p>";
             // content += "    <input type='range' min=0 max=100 step=1 id='vol_" + group.id + "' oninput='javascript:setVolume(\"" + client.id + "\"," + client.config.volume.muted + ")' value=" + client.config.volume.percent + " class='" + sliderclass + "'>";
             content += "</div>";
         }
@@ -419,6 +421,7 @@ function show() {
             content += "<a href=\"javascript:setVolume('" + client.id + "'," + !muted + ");\"><img src='" + mute_img + "' class='mute-button'></a>";
             content += "    <div class='sliderdiv'>";
             content += "        <input type='range' min=0 max=100 step=1 id='vol_" + client.id + "' oninput='javascript:setVolume(\"" + client.id + "\"," + client.config.volume.muted + ")' value=" + client.config.volume.percent + " class='" + sliderclass + "'>";
+            content += "        <p class='slideroutput'>&nbsp<span id='client_vol_" + client.id + "'></span></p>";
             content += "    </div>";
             content += "    <span class='edit-icons'>";
             content += "        <a href=\"javascript:openClientSettings('" + client.id + "');\" class='edit-icon'>&#9998</a>";
@@ -461,12 +464,26 @@ function show() {
             let slider = document.getElementById("vol_" + group.id);
             if (slider == null)
                 continue;
+            let output = document.getElementById('group_vol_' + group.id);
+            ;
+            output.innerHTML = slider.value + "%";
             slider.addEventListener('pointerdown', function () {
                 groupVolumeEnter(group.id);
             });
             slider.addEventListener('touchstart', function () {
                 groupVolumeEnter(group.id);
             });
+        }
+        for (let group of snapcontrol.server.groups) {
+            if (group.clients.length > 1) {
+                //clients = group.clients
+                for (let client of group.clients) {
+                    let slider = document.getElementById('vol_' + client.id);
+                    let output = document.getElementById('client_vol_' + client.id);
+                    ;
+                    output.innerHTML = slider.value + "%";
+                }
+            }
         }
     }
 }
@@ -477,6 +494,9 @@ function updateGroupVolume(group) {
         return;
     console.log("updateGroupVolume group: " + group.id + ", volume: " + group_vol + ", slider: " + (slider != null));
     slider.value = String(group_vol);
+    let output = document.getElementById('group_vol_' + group.id);
+    ;
+    output.innerHTML = slider.value + "%";
 }
 let client_volumes;
 let group_volume;
@@ -499,10 +519,18 @@ function setGroupVolume(group_id) {
             new_volume += ratio * (100 - client_volumes[i]);
         let client_id = group.clients[i].id;
         // TODO: use batch request to update all client volumes at once
+        let sl = document.getElementById('vol_' + group.id);
+        let output = document.getElementById('group_vol_' + group.id);
+        ;
+        output.innerHTML = sl.value + "%";
         snapcontrol.setVolume(client_id, new_volume);
         let slider = document.getElementById('vol_' + client_id);
-        if (slider)
+        if (slider) {
             slider.value = String(new_volume);
+            let output = document.getElementById('client_vol_' + client_id);
+            ;
+            output.innerHTML = slider.value + "%";
+        }
     }
 }
 function groupVolumeEnter(group_id) {
@@ -510,9 +538,16 @@ function groupVolumeEnter(group_id) {
     let percent = document.getElementById('vol_' + group.id).valueAsNumber;
     console.log("groupVolumeEnter id: " + group.id + ", volume: " + percent);
     group_volume = percent;
+    let slider = document.getElementById('vol_' + group.id);
+    let output = document.getElementById('group_vol_' + group.id);
+    ;
+    output.innerHTML = slider.value + "%";
     client_volumes = [];
     for (let i = 0; i < group.clients.length; ++i) {
         client_volumes.push(group.clients[i].config.volume.percent);
+        let slider = document.getElementById('vol_' + group.clients[i].id);
+        let output = document.getElementById('client_vol_' + group.clients[i].id);
+        output.innerHTML = slider.value + "%";
     }
     // show()
 }
@@ -522,6 +557,10 @@ function setVolume(id, mute) {
     let client = snapcontrol.getClient(id);
     let needs_update = (mute != client.config.volume.muted);
     snapcontrol.setVolume(id, percent, mute);
+    let slider = document.getElementById('vol_' + id);
+    let output = document.getElementById('client_vol_' + id);
+    ;
+    output.innerHTML = slider.value + "%";
     let group = snapcontrol.getGroupFromClient(id);
     updateGroupVolume(group);
     if (needs_update)
@@ -534,6 +573,7 @@ function play() {
     }
     else {
         snapstream = new SnapStream(config.baseUrl);
+        //        snapstream = new SnapStream('ws://localhost:1780');
     }
     show();
 }
