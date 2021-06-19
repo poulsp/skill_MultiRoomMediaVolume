@@ -412,6 +412,24 @@ class MultiRoomMediaVolume(AliceSkill):
 	#-----------------------------------------------
 	def _publishChangeVolumeControlType(self, volume, info="No info"):
 			self.publish(_MULTIROOM_VOLUME_CONTROL_TYPE_SET,  json.dumps({'volume': volume, 'volumeControlType': self._volumeControlType, 'info': info}))
+			# config.json.template, we have removed the "volumeControl" not in use anymore with the new snapcastcontrol.
+			# {
+			# 	"volumeStepsUpDown": {
+			# 		"defaultValue": 6,
+			# 		"dataType": "integer",
+			# 		"isSensitive": false,
+			# 		"description": "How many step in percent the volume increase/decrease.",
+			# 		"onUpdate": "setVolumeStepsUpDown"
+			# 	},
+			# 	"volumeControl": {
+			# 		"defaultValue": "snapcast",
+			# 		"dataType": "list",
+			# 		"isSensitive": false,
+			# 		"values": ["snapcast", "alsamixer"],
+			# 		"description": "Which volume control to use snapcast | alsamixer. Further explanation needed.",
+			# 		"onUpdate": "publishVolumeControlType"
+			# 	}
+			# }
 
 
 	#-----------------------------------------------

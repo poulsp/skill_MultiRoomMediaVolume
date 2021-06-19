@@ -5,13 +5,5 @@
 		"isSensitive": false,
 		"description": "How many step in percent the volume increase/decrease.",
 		"onUpdate": "setVolumeStepsUpDown"
-	},
-	"volumeControl": {
-		"defaultValue": "snapcast",
-		"dataType": "list",
-		"isSensitive": false,
-		"values": ["snapcast", "alsamixer"],
-		"description": "Which volume control to use snapcast | alsamixer. Further explanation needed.",
-		"onUpdate": "publishVolumeControlType"
 	}
 }
