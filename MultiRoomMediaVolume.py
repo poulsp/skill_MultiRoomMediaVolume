@@ -21,7 +21,8 @@
 
 import asyncio
 import json
-from snapcastcontrol.control.SnapControl import SnapControl
+
+#from snapcastcontrol.control.SnapControl import SnapControl
 
 from core.base.model.AliceSkill import AliceSkill
 from core.dialog.model.DialogSession import DialogSession
@@ -169,6 +170,7 @@ class MultiRoomMediaVolume(AliceSkill):
 		self._PspPlayers        = dict()
 
 		CheckSnapcast.installSnapserver(self)
+		from snapcastcontrol.control.SnapControl import SnapControl
 
 		multiRoomMediaNotificationCallbacks = {
 			'onServerDisconnect': self._onSnapServerDisconnect,
@@ -193,6 +195,8 @@ class MultiRoomMediaVolume(AliceSkill):
 		#   'onGroupStreamchanged':
 		#   'onStreamUpdate':
 		#   'onServerCreated':
+
+
 
 
 		self._snapcastcontrol = SnapControl(1, "ThreadSnapControl", 'localhost', reconnect=True, notificationCallbacks=multiRoomMediaNotificationCallbacks)
