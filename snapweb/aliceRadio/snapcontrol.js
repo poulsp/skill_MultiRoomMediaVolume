@@ -479,9 +479,11 @@ function show() {
                 //clients = group.clients
                 for (let client of group.clients) {
                     let slider = document.getElementById('vol_' + client.id);
-                    let output = document.getElementById('client_vol_' + client.id);
-                    ;
-                    output.innerHTML = slider.value + "%";
+                    if (slider) {
+                        let output = document.getElementById('client_vol_' + client.id);
+                        ;
+                        output.innerHTML = slider.value + "%";
+                    }
                 }
             }
         }
@@ -519,10 +521,10 @@ function setGroupVolume(group_id) {
             new_volume += ratio * (100 - client_volumes[i]);
         let client_id = group.clients[i].id;
         // TODO: use batch request to update all client volumes at once
-        let sl = document.getElementById('vol_' + group.id);
+        let groupSlider = document.getElementById('vol_' + group.id);
         let output = document.getElementById('group_vol_' + group.id);
         ;
-        output.innerHTML = sl.value + "%";
+        output.innerHTML = groupSlider.value + "%";
         snapcontrol.setVolume(client_id, new_volume);
         let slider = document.getElementById('vol_' + client_id);
         if (slider) {
@@ -546,8 +548,10 @@ function groupVolumeEnter(group_id) {
     for (let i = 0; i < group.clients.length; ++i) {
         client_volumes.push(group.clients[i].config.volume.percent);
         let slider = document.getElementById('vol_' + group.clients[i].id);
-        let output = document.getElementById('client_vol_' + group.clients[i].id);
-        output.innerHTML = slider.value + "%";
+        if (slider) {
+            let output = document.getElementById('client_vol_' + group.clients[i].id);
+            output.innerHTML = slider.value + "%";
+        }
     }
     // show()
 }

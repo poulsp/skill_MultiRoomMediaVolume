@@ -1,1 +1,1 @@
-{"version":3,"file":"config.js","sourceRoot":"","sources":["../src/page/config.ts"],"names":[],"mappings":";AAAA,IAAI,MAAM,GAAG;IACb,kGAAkG;IAC9F,OAAO,EAAE,qBAAqB;CAEjC,CAAA"}
+{"version":3,"file":"config.js","sourceRoot":"","sources":["../snapweb/snapweb/src/page/config.ts"],"names":[],"mappings":";AAAA,IAAI,MAAM,GAAG;IACb,kGAAkG;IAC9F,OAAO,EAAE,qBAAqB;CAEjC,CAAA"}

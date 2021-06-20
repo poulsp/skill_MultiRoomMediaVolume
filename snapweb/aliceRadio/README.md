@@ -1,5 +1,7 @@
 # Snapweb
 
+This source modified by poulsp. the repo exist at [snapweb](https://github.com/badaix/snapweb)
+
 Web client for [Snapcast](https://github.com/badaix/snapcast), optimized for mobile devices, with the look and feel of [Snapdroid](https://github.com/badaix/snapdroid)
 
 ## Setup
@@ -18,8 +20,8 @@ On Android open `http://<snapserver host>:1780` in Chrome and select in the menu
 
 ## Contributing
 
-This web client is the author's first JavaScript/TypeScript project and is rather a proof of concept for the Snapserver's [WebSocket API](https://github.com/badaix/snapcast/blob/master/doc/json_rpc_api/v2_0_0.md).  
-Since my time and my web development skills are limited, pull requests are highly appreciated. Please check the list of [open issues](https://github.com/badaix/snapweb/issues).  
+This web client is the author's first JavaScript/TypeScript project and is rather a proof of concept for the Snapserver's [WebSocket API](https://github.com/badaix/snapcast/blob/master/doc/json_rpc_api/v2_0_0.md).
+Since my time and my web development skills are limited, pull requests are highly appreciated. Please check the list of [open issues](https://github.com/badaix/snapweb/issues).
 Branch from the `develop` branch and ensure it is up to date with the current `develop` branch before submitting your pull request.
 
 High prio issues:
