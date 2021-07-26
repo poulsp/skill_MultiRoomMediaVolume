@@ -25,6 +25,9 @@ import subprocess
 import time
 from os import path #, symlink
 
+from core.util.model.Logger import Logger
+from core.base.SuperManager import SuperManager
+
 
 # HELP TO DEVELOPMENT.
 # sudo apt-get purge snapserver -y && sudo rm /dev/shm/snapfifo;cd ~/ProjectAlice;./venv/bin/pip uninstall snapcastcontrol -y
@@ -44,12 +47,15 @@ class CheckSnapcast():
 
 	#-----------------------------------------------
 	@staticmethod
-	def snapcastInstallPip(parent):
+	def snapcastInstallPip():
 		_SNAPCASTCONTROL_VERSION = '0.1.0'
+
+		commons = SuperManager.getInstance().commons
 
 		if not path.exists('./venv/lib/python3.7/site-packages/snapcastcontrol'):
 			cmd = shlex.split('./venv/bin/pip install snapcastcontrol')
-			result = parent.Commons.runSystemCommand(cmd)
+			result = commons.runSystemCommand(cmd)
+
 			if result.returncode:
 				raise Exception(result.stderr)
 		else:
@@ -63,7 +69,7 @@ class CheckSnapcast():
 				if _output != _SNAPCASTCONTROL_VERSION:
 
 					cmd = shlex.split('./venv/bin/pip install snapcastcontrol --upgrade')
-					result = parent.Commons.runSystemCommand(cmd)
+					result = commons.runSystemCommand(cmd)
 					if result.returncode:
 						raise Exception(result.stderr)
 
@@ -73,8 +79,8 @@ class CheckSnapcast():
 
 	#-----------------------------------------------
 	@staticmethod
-	def installSnapserver(parent):
-		CheckSnapcast.snapcastInstallPip(parent)
+	def installSnapserver():
+		CheckSnapcast.snapcastInstallPip()
 
 		# cmd = 'snapserver --logging.sink=null --server.datadir=${HOME}.config/snapserver > /dev/null 2>&1 &'
 		try:
@@ -90,10 +96,14 @@ class CheckSnapcast():
 
 		except subprocess.CalledProcessError:
 			# Install snapserver
-			parent.logInfo(f'Checking dependencies **{parent.NAME}**')
+			NAME = 'MultiRoomMediaVolume'
+			Logger().logInfo(f'Checking dependencies **{NAME}**')
 			sedCmd1 	= shlex.split('sudo sed -i "s/doc_root = \/usr\/share\/snapserver\/snapweb/doc_root = \/home\/pi\/ProjectAlice\/skills\/MultiRoomMediaVolume\/snapweb\/aliceRadio/" /etc/snapserver.conf')
-			sedCmd2 	= shlex.split('sudo sed -i "s/\.*source = pipe:\/\/\/tmp\/snapfifo?name=default/source = pipe:\/\/\/dev\/shm\/snapfifo?name=default/" /etc/snapserver.conf')
-			sedCmd3 = shlex.split('sudo sed -i "s/\.*stream = pipe:\/\/\/tmp\/snapfifo?name=default/stream = pipe:\/\/\/dev\/shm\/snapfifo?name=default/" /etc/snapserver.conf')
+
+			sedCmd2 	= shlex.split('sudo sed -i "s/\.*source = pipe:\/\/\/tmp\/snapfifo?name=default/source = pipe:\/\/\/dev\/shm\/snapfifo?name=RadioAlice/" /etc/snapserver.conf')
+
+			sedCmd3 = shlex.split('sudo sed -i "s/\.*stream = pipe:\/\/\/tmp\/snapfifo?name=default/stream = pipe:\/\/\/dev\/shm\/snapfifo?name=RadioAlice/" /etc/snapserver.conf')
+
 			sedCmd4 = shlex.split('sudo sed -i "s/\.*User=snapserver/User=pi/" /lib/systemd/system/snapserver.service')
 			sedCmd5 = shlex.split('sudo sed -i "s/\.*Group=snapserver/Group=pi/" /lib/systemd/system/snapserver.service')
 			sedCmd6 = shlex.split('sudo sed -i "s/--logging.sink=system --server.datadir=\${HOME}/--logging.sink=null  --server.datadir=\${HOME}\/\.config\/snapserver/" /lib/systemd/system/snapserver.service')

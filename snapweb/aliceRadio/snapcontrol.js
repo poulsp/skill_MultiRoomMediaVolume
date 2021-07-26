@@ -300,8 +300,24 @@ let snapcontrol;
 let snapstream = null;
 let hide_offline = true;
 let autoplay_done = false;
+//???let storageEnabled = false
 function autoplayRequested() {
     return document.location.hash.match(/autoplay/) !== null;
+}
+//PS
+function showDropdown() {
+    let dropdownElem = document.getElementById('dropdown');
+    dropdownElem.classList.toggle('special');
+    const myDropdown = document.getElementById("myDropdown");
+    myDropdown.classList.toggle("show");
+}
+//PS
+function checkOfflineClients() {
+    const checkbox = document.getElementById("offline_clients");
+    (checkbox.checked ? 'false' : 'true');
+    hide_offline = (checkbox.checked ? false : true);
+    localStorage.setItem("hide_offline", hide_offline.toString());
+    show();
 }
 function show() {
     // Render the page
@@ -319,6 +335,13 @@ function show() {
     let serverVersion = snapcontrol.server.server.snapserver.version.split('.');
     if ((serverVersion.length >= 2) && (+serverVersion[1] >= 21)) {
         content += "    <img src='" + play_img + "' class='play-button' id='play-button'></a>";
+        //PS
+        content += "    <div id='dropdown' class='dropdown btn-right showLeft' onclick='showDropdown()'>";
+        content += "      <div id='myDropdown' class='dropdown-content'>";
+        content += "        <input type='checkbox' id='offline_clients' name='offline_clients' value='true' onclick='checkOfflineClients()' >";
+        content += "        <label for='offline_clients'> Show offline clients </label>";
+        content += "      </div>";
+        content += "    </div>";
         // Stream became ready and was not playing. If autoplay is requested, start playing.
         if (!snapstream && !autoplay_done && autoplayRequested()) {
             autoplay_done = true;
@@ -377,6 +400,7 @@ function show() {
             let volume = snapcontrol.getGroupVolume(group, hide_offline);
             content += "<a href=\"javascript:setMuteGroup('" + group.id + "'," + !muted + ");\"><img src='" + mute_img + "' class='mute-button'></a>";
             content += "<div class='slidergroupdiv'>";
+            //PS
             content += "    <input type='range' draggable='false' min=0 max=100 step=1 id='vol_" + group.id + "' oninput='javascript:setGroupVolume(\"" + group.id + "\")' value=" + volume + " class='slider'>";
             content += "        <p class='slideroutput'>&nbsp<span id='group_vol_" + group.id + "'></span></p>";
             // content += "    <input type='range' min=0 max=100 step=1 id='vol_" + group.id + "' oninput='javascript:setVolume(\"" + client.id + "\"," + client.config.volume.muted + ")' value=" + client.config.volume.percent + " class='" + sliderclass + "'>";
@@ -420,8 +444,10 @@ function show() {
             // Populate client div
             content += "<a href=\"javascript:setVolume('" + client.id + "'," + !muted + ");\"><img src='" + mute_img + "' class='mute-button'></a>";
             content += "    <div class='sliderdiv'>";
+            //PS
             content += "        <input type='range' min=0 max=100 step=1 id='vol_" + client.id + "' oninput='javascript:setVolume(\"" + client.id + "\"," + client.config.volume.muted + ")' value=" + client.config.volume.percent + " class='" + sliderclass + "'>";
-            content += "        <p class='slideroutput'>&nbsp<span id='client_vol_" + client.id + "'></span></p>";
+            content += "        <p class='slideroutput'>&nbsp<span id='client_vol_" + client.id + "'>" + client.config.volume.percent + "%</span></p>";
+            //            content += "        <p class='slideroutput'>&nbsp<span id='client_vol_" + client.id + "'></span></p>";
             content += "    </div>";
             content += "    <span class='edit-icons'>";
             content += "        <a href=\"javascript:openClientSettings('" + client.id + "');\" class='edit-icon'>&#9998</a>";
@@ -488,6 +514,10 @@ function show() {
             }
         }
     }
+    //PS
+    // set  hide_offline in browser datastore
+    const checkbox = document.getElementById("offline_clients");
+    checkbox.checked = !hide_offline;
 }
 function updateGroupVolume(group) {
     let group_vol = snapcontrol.getGroupVolume(group, hide_offline);
@@ -529,6 +559,7 @@ function setGroupVolume(group_id) {
         let slider = document.getElementById('vol_' + client_id);
         if (slider) {
             slider.value = String(new_volume);
+            //PS
             let output = document.getElementById('client_vol_' + client_id);
             ;
             output.innerHTML = slider.value + "%";
@@ -540,6 +571,7 @@ function groupVolumeEnter(group_id) {
     let percent = document.getElementById('vol_' + group.id).valueAsNumber;
     console.log("groupVolumeEnter id: " + group.id + ", volume: " + percent);
     group_volume = percent;
+    //PS
     let slider = document.getElementById('vol_' + group.id);
     let output = document.getElementById('group_vol_' + group.id);
     ;
@@ -562,6 +594,7 @@ function setVolume(id, mute) {
     let needs_update = (mute != client.config.volume.muted);
     snapcontrol.setVolume(id, percent, mute);
     let slider = document.getElementById('vol_' + id);
+    //PS
     let output = document.getElementById('client_vol_' + id);
     ;
     output.innerHTML = slider.value + "%";
@@ -673,12 +706,94 @@ function closeClientSettings() {
     show();
 }
 function deleteClient(id) {
-    if (confirm('Are you sure?')) {
+    let client = snapcontrol.getClient(id);
+    //PS
+    let name = client.config.name;
+    if (name == "")
+        name = client.host.name;
+    if (confirm(`Are you sure you want to delete "${name}"?`)) {
         snapcontrol.deleteClient(id);
     }
 }
+//PS
+function setCookieHideOffline(key, value, exdays = -1) {
+    let d = new Date();
+    if (exdays < 0)
+        exdays = 10 * 365;
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = key + "=" + value + ";" + expires + ";sameSite=Strict;path=/";
+}
+//PS
+function getCookieHideOffline(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 window.onload = function () {
     snapcontrol = new SnapControl(config.baseUrl);
+    //PS
+    // set/get  hide_offline in browser datastore
+    if (typeof (Storage) !== "undefined") {
+        //??        storageEnabled = true
+        let valueOfHideOffline = localStorage.getItem("hide_offline");
+        if (valueOfHideOffline == null) {
+            // Store
+            localStorage.setItem("hide_offline", hide_offline.toString());
+            valueOfHideOffline = hide_offline.toString();
+        }
+        hide_offline = (valueOfHideOffline === 'true');
+    }
+    else {
+        console.warn("Sorry! No Web Storage support..");
+        /*
+                // Fallback to cookies if localStorage is not available.
+        //??        storageEnabled = false
+                let valueOfHideOffline = localStorage.getItem("hide_offline")
+        
+                if (!valueOfHideOffline) {
+                    // Store
+                    setCookie("hide_offline", hide_offline.toString())
+                }
+        
+        */
+        /*
+                // Fallback to cookies if localStorage is not available.
+                let name = key + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let c of ca) {
+                    c = c.trimLeft();
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                setCookie(key, defaultValue);
+                return defaultValue;
+        */
+    }
+    /*
+    //    if (Boolean(valueOfHideOffline)) {
+            //console.warn("valueOfHideOffline: " + valueOfHideOffline)
+            console.warn("localStorage.getItem('hide_offline'): " + localStorage.getItem("hide_offline"))
+    //        let valueOfHideOffline = localStorage.getItem("hide_offline")
+            let valueOfHideOffline = (localStorage.getItem("hide_offline") === 'true');
+            console.warn("valueOfHideOffline: " + typeof valueOfHideOffline)
+            console.warn("valueOfHideOffline: " + valueOfHideOffline)
+    
+            hide_offline = valueOfHideOffline
+    */
+    //}
+    //     if (hide_offline1) { console.warn("hide_offline1: " + hide_offline1) }
 };
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {

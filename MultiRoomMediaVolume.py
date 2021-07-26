@@ -24,6 +24,7 @@ import json
 
 #from snapcastcontrol.control.SnapControl import SnapControl
 
+
 from core.base.model.AliceSkill import AliceSkill
 from core.dialog.model.DialogSession import DialogSession
 from core.util.Decorators import IntentHandler
@@ -42,6 +43,12 @@ from skills.MultiRoomMediaVolume.library.Topics import(	_MULTIROOM_VOLUME,
 																								)
 
 from skills.MultiRoomMediaVolume.library.CheckSnapcast import(CheckSnapcast)
+
+try:
+	from snapcastcontrol.control.SnapControl import SnapControl
+except Exception:
+	CheckSnapcast.installSnapserver()
+	from snapcastcontrol.control.SnapControl import SnapControl
 
 
 #-----------------------------------------------
@@ -160,6 +167,8 @@ class MultiRoomMediaVolume(AliceSkill):
 	#-----------------------------------------------
 	def onStart(self):
 		super().onStart()
+		CheckSnapcast.installSnapserver()
+
 		self._volumeStepsUpDown = self.getConfig('volumeStepsUpDown')
 		# self._volumeControlType = self.getConfig('volumeControl')
 		self._volumeControlType = 'snapcast'
@@ -169,8 +178,8 @@ class MultiRoomMediaVolume(AliceSkill):
 		self._isMuted           = False
 		self._PspPlayers        = dict()
 
-		CheckSnapcast.installSnapserver(self)
-		from snapcastcontrol.control.SnapControl import SnapControl
+		# CheckSnapcast.installSnapserver(self)
+		# from snapcastcontrol.control.SnapControl import SnapControl
 
 		multiRoomMediaNotificationCallbacks = {
 			'onServerDisconnect': self._onSnapServerDisconnect,
@@ -199,13 +208,13 @@ class MultiRoomMediaVolume(AliceSkill):
 
 
 
-		self._snapcastcontrol = SnapControl(1, "ThreadSnapControl", 'localhost', reconnect=True, notificationCallbacks=multiRoomMediaNotificationCallbacks)
 
 		self.publish(_MULTIROOM_VOLUME,  json.dumps({'playSite': 'everywhere', 'volume': self._volume, 'info': 'onStart'}))
 
 		# Send mixer type to player.
 		self.ThreadManager.doLater(interval=0.3, func=self.publishVolumeControlType, args=[self._volumeControlType])
 
+		self._snapcastcontrol = SnapControl(1, "ThreadSnapControl", 'localhost', reconnect=True, notificationCallbacks=multiRoomMediaNotificationCallbacks)
 
 	#-----------------------------------------------
 	def _onSnapServerDisconnect(self, exception):

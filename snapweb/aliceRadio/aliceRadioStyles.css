@@ -1,76 +1,79 @@
 body {
-/*    background-color: rgb(246, 246, 246);*/
-/*//    color: rgb(255, 255, 255);*/
-/*//    background-color: white;*/
-/*//    color: yellow;*/
-/*//    background-color: CornflowerBlue;*/
-    /* Lavender */
-
-/* SteelBlue */
-/* #325d81 */
-    background-color: #4255BD;
-    color: #E6E6FA;
+/*
+    background-color: rgb(246, 246, 246);
+//    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-family: 'Arial', sans-serif;
     width: 100%;
     margin: 0;
-    font-size: 14px;
+    font-size: 20px;
     overscroll-behavior: contain;
+*/
+	background-color: #4255BD;
+  /*color: rgb(0, 0, 0); */
+	color: #E6E6FA;
+
+	font-family: 'Arial', sans-serif;
+	width: 100%;
+	margin: 0;
+	font-size: 14px;
+	overscroll-behavior: contain;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+	width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #1f1f1f;
+	background: #1f1f1f;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #333;
+	background: #333;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+	background: #555;
 }
 
 .navbar {
-    overflow: hidden;
+//	overflow: hidden;
 /*//    background-color: #607d8b; */
 /*    background-color: #000099; */
-    background-color: #26316D;
+	background-color: #26316D;
 
-    z-index: 1; /* Sit on top */
-    padding: 13px;
+	z-index: 1; /* Sit on top */
+	padding: 13px;
 /*//    color: CornflowerBlue;*/
-    /* Lavender */
-    color: #E6E6FA;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
-    font-size: 15px;
-    font-weight: 500;
-    user-select: none;
+	/* Lavender */
+	color: #E6E6FA;
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
+	width: 100%; /* Full width */
+	font-size: 15px;
+	font-weight: 500;
+	user-select: none;
 }
 
 .play-button {
-    display: block;
-    position: absolute;
-    right: 34px;
-    top: 5px;
-    height: 40px;
-    width: 40px;
+	display: block;
+	position: absolute;
+	right: 34px;
+	top: 5px;
+	height: 40px;
+	width: 40px;
 }
 
 .content {
-    margin-top: 52px
+	margin-top: 52px
 }
 
 .group {
-    float: none;
+	float: none;
 /*//    background-color: white;*/
 /*
 #396a93
@@ -78,260 +81,345 @@ body {
 #2b506e
 
 */
-    background-color: #4255BD;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2);
-    clear: both;
-    padding: 8px;
-    margin: 10px 15px 10px 15px;
-    overflow: auto;
-    width: auto;
-    border-radius: 3px;
-    user-select: none;
+	background-color: #4255BD;
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2);
+	clear: both;
+	padding: 8px;
+	margin: 10px 15px 10px 15px;
+	overflow: auto;
+	width: auto;
+	border-radius: 3px;
+	user-select: none;
 }
 
 .group.muted {
 /*    opacity: 0.27; */
-    opacity: 0.27;
+	opacity: 0.27;
 }
 
 .groupheader {
-    /* margin: 10px; */
-    width: auto;
-    height: fit-content;
-    /* padding: 10px; */
-    padding-bottom: 0px;
-    display: grid;
-    grid-template-columns: min-content auto min-content;
-    grid-template-rows: min-content min-content;
-    grid-gap: 0px;
+	/* margin: 10px; */
+	width: auto;
+	height: fit-content;
+	/* padding: 10px; */
+	padding-bottom: 0px;
+	display: grid;
+	grid-template-columns: min-content auto min-content;
+	grid-template-rows: min-content min-content;
+	grid-gap: 0px;
 }
 
 .groupheader-separator {
-    height: 1px;
-    margin: 8px 0px;
-    border-width: 0px;
-    color: lightgray;
-    background-color: lightgray;
+	height: 1px;
+	margin: 8px 0px;
+	border-width: 0px;
+	color: lightgray;
+	background-color: lightgray;
 }
 
 .stream {
 /*//    color: #686868;*/
-    /* Lavender */
-    color: #E6E6FA;
-    grid-row: 1;
-    grid-column: 1/3;
-    width: fit-content;
+	/* Lavender */
+	color: #E6E6FA;
+	grid-row: 1;
+	grid-column: 1/3;
+	width: fit-content;
 }
 
 select {
-    background-color: transparent;
-    border: 0px;
-    width: 150px;
-    font-size: 14px;
+	background-color: transparent;
+	border: 0px;
+	width: 150px;
+	font-size: 14px;
 /*//    color: #e3e3e3;*/
-    color: red;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
+	color: red;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
 }
 /*
 //###########################################################
 .slidergroupdiv {
-    // background: greenyellow;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-row: 2;
-    grid-column: 2;
+	// background: greenyellow;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-row: 2;
+	grid-column: 2;
 }
 
 //###########################################################
 */
 .client {
-    /* text-align: left; */
-    /* margin: 10px; */
-    width: auto;
-    height: fit-content;
-    /* padding: 10px; */
-    display: grid;
-    grid-template-columns: min-content auto min-content;
-    grid-template-rows: min-content min-content;
-    grid-gap: 0px;
+	/* text-align: left; */
+	/* margin: 10px; */
+	width: auto;
+	height: fit-content;
+	/* padding: 10px; */
+	display: grid;
+	grid-template-columns: min-content auto min-content;
+	grid-template-rows: min-content min-content;
+	grid-gap: 0px;
 }
 
 /* .client:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 } */
 
 .client.disconnected {
-    opacity: 0.27;
+	/*opacity: 0.27; */
+	opacity: 0.4;
 }
-
+/*
+.client.disconnected {
+	opacity: 0.27;
+	opacity: 0.5;
+}
+*/
 .name {
 /*//    color: #686868;*/
-    /* Lavender */
-    color: #E6E6FA;
-    user-select: none;
-    /* background: red; */
-    padding-top: 5px;
-    grid-row: 1;
-    grid-column: 1/3;
-    text-decoration: none;
+	/* Lavender */
+	color: #E6E6FA;
+	user-select: none;
+	/* background: red; */
+	padding-top: 5px;
+	grid-row: 1;
+	grid-column: 1/3;
+	text-decoration: none;
 }
 
 .editdiv {
-    background: violet;
-    grid-row: 0/4;
-    grid-column: 3;
+	background: violet;
+	grid-row: 0/4;
+	grid-column: 3;
 }
 
 .edit-icon {
-    color: #E6E6FA;
-    text-decoration: none;
+	color: #E6E6FA;
+	//color: #ffffff;
+
+	text-decoration: none;
 }
 
 .delete-icon {
-    color: #ff4081;
-    text-decoration: none;
+	//color: #ff4081;
+	color: #E6E6FA;
+
+	text-decoration: none;
 }
 
 .edit-icons {
-    align-items: center;
-    display: flex;
-    grid-row: 1/3;
-    grid-column: 3;
+	align-items: center;
+	display: flex;
+	grid-row: 1/3;
+	grid-column: 3;
 }
 
 .edit-group-icon {
-    display: flex;
-    color: transparent;
-    align-items: center;
-    grid-row: 1/3;
-    grid-column: 3;
-    text-decoration: none;
+	display: flex;
+	color: transparent;
+	align-items: center;
+	grid-row: 1/3;
+	grid-column: 3;
+	text-decoration: none;
 }
 
 .mute-button {
-    color: #686868;
-    grid-row: 2;
-    grid-column: 1;
-    height: 25px;
-    width: 25px;
-    padding-left: 10px;
-    padding-right: 10px;
-    text-decoration: none;
+	color: #686868;
+	grid-row: 2;
+	grid-column: 1;
+	height: 25px;
+	width: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-decoration: none;
 }
 /*
 //###########################################################
 .sliderdiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-row: 2;
-    grid-column: 2;
-    // padding-left: 40px;
-    // display: inline-block;
-    //text-align: left;
-    // width: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-row: 2;
+	grid-column: 2;
+	// padding-left: 40px;
+	// display: inline-block;
+	//text-align: left;
+	// width: 250px;
 }
 
 .slider {
-     writing-mode: bt-lr;
-    -webkit-appearance: none;
-    background: #dbdbdb;
-    outline: none;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    height: 2px;
-    width: 90%;
+	 writing-mode: bt-lr;
+	-webkit-appearance: none;
+	background: #dbdbdb;
+	outline: none;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+	height: 2px;
+	width: 90%;
 }
 
 .slider::-moz-range-track {
-    padding: 6px;
-    background-color: transparent;
-    border: none;
+	padding: 6px;
+	background-color: transparent;
+	border: none;
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: #ff4081;
-    cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 12px;
+	width: 12px;
+	border-radius: 50%;
+	background: #ff4081;
+	cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: #ff4081;
-    cursor: pointer;
+	height: 12px;
+	width: 12px;
+	border-radius: 50%;
+	background: #ff4081;
+	cursor: pointer;
 }
 
 .slider.muted {
-    opacity: 0.27;
+	opacity: 0.27;
 }
 
 .slideroutput {
-    font-size: 14px;
+	font-size: 14px;
 
 }
 
 //###########################################################
 */
  .client-settings {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 .client-setting-content {
-    background-color: #fefefe;
-    color: #686868;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+	background-color: #fefefe;
+	color: #686868;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
 }
 
 .client-input {
-    color: #686868;
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+	color: #686868;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 
 input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
 
 div.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
 }
 
+/*###### Section 3-dot menu ######*/
+.showLeft{
+  text-shadow: none !important;
+  margin-top: 1px;
+  padding-right: 15px;
+  height: 20px;
+}
+
+.btn-right {
+  right: 0.4em;
+}
+
+.btn-right {
+  position: absolute;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+
+  position: fixed;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.dropdown:before {
+content: '\2807';
+font-size: 20px;
+}
+
+.dropdown.special:before {
+  content: "x";
+}
+
+.dropdown {
+  position: absolute;
+  display: inline-block;
+  right: 0.4em;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  margin-top: 5px;
+  background-color: #f9f9f9;
+
+  min-width: 100px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+
+.dropdown-content label {
+	padding-right: 8px;
+  color:black;
+  font-size: 10px;
+}
+
+.dropdown-content a {
+  text-align:right
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.show {display:block;}
+
+/*###### End Section 3-dot menu ######*/

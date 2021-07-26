@@ -25,8 +25,10 @@ class MultiRoomMediaVolume(Widget):
 		if self.settings:
 			self.settings['title'] = False
 			self.settings['borders'] = False
-			self.w = 290
-			self.h = 452
+			self.w = 212
+			self.h = 363
+			# self.w = 290
+			# self.h = 452
 
 			# self.w = 382
 			# self.h = 468
